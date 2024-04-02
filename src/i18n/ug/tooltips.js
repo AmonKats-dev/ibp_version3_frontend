@@ -95,6 +95,8 @@ export default {
           release_spent:
             "Indicate the funds that have been spent on the project implementation so far.",
           source_of_funds: "Identify the source of funds",
+          remarks: "Remarks",
+          overall_project_rating: "Overall Rating",
         },
       },
       roles: {

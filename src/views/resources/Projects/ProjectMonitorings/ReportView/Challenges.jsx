@@ -60,6 +60,18 @@ export const Challenges = (props) => {
                 <TableCell>Lessons Learned</TableCell>
                 <TableCell>{record.lessons_learned}</TableCell>
               </TableRow>
+              <TableRow>
+                <TableCell>Remarks</TableCell>
+                <TableCell>{record.remarks ? record.remarks : ""}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Overall Project Rating</TableCell>
+                <TableCell>
+                  {record.overall_project_rating
+                    ? record.overall_project_rating
+                    : ""}
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </TableContainer>

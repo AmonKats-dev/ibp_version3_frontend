@@ -1,6 +1,8 @@
 export default {
   resources: {
-    'reports-consolidated-monitoring-projects': { name: "Consolidated Projects Progress Report" },
+    "reports-consolidated-monitoring-projects": {
+      name: "Consolidated Projects Progress Report",
+    },
     periodical: { name: "Periodical Reports" },
     quarter: { name: "Quarter Reports" },
     integrations: {
@@ -54,7 +56,7 @@ export default {
         future_considerations: "Future considerations",
         financial_sustainability: "Financial Sustainability plan",
         environmental_sustainability: "Environmental Sustainability Plan",
-        achievements: "Project Achievements"
+        achievements: "Project Achievements",
       },
     },
     project: {
@@ -425,7 +427,7 @@ export default {
           title: "Stakeholders and their responsibilities",
           name: "Name",
           responsibilities: "Responsibilities",
-          affected_population: "Affected population"
+          affected_population: "Affected population",
         },
         in_ndp: {
           title: "In NDP",
@@ -949,6 +951,8 @@ export default {
         donor: "Donor",
         budget_allocation: "Budget Allocation",
         me_type: "Type of M&E Methodology",
+        remarks: "Remarks",
+        overall_project_rating: "Overall Project Rating",
       },
     },
     investments: {

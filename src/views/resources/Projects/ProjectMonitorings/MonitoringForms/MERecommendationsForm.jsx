@@ -56,6 +56,38 @@ function MERecommendationsForm(props) {
                 fullWidth
               />
             </CustomInput>
+            <CustomInput
+              tooltipText="tooltips.resources.me-reports.fields.remarks"
+              fullWidth
+            >
+              <TextInput
+                label={translate("resources.me-reports.fields.remarks")}
+                variant="outlined"
+                margin="none"
+                source={`remarks`}
+                validate={required()}
+                rows={5}
+                multiline
+                fullWidth
+              />
+            </CustomInput>
+            <CustomInput
+              tooltipText="tooltips.resources.me-reports.fields.overall_project_rating"
+              fullWidth
+            >
+              <TextInput
+                label={translate(
+                  "resources.me-reports.fields.overall_project_rating"
+                )}
+                variant="outlined"
+                margin="none"
+                source={`overall_project_rating`}
+                validate={required()}
+                rows={5}
+                multiline
+                fullWidth
+              />
+            </CustomInput>
           </Fragment>
         );
       }}
