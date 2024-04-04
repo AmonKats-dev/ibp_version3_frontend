@@ -89,6 +89,9 @@ const BulkActions = (props) => {
   const unselectAll = useUnselectAll();
 
   const { data } = useListContext();
+
+  console.log(data, "sada");
+
   const handleClick = () => {
     setShowDialog(true);
   };
@@ -212,11 +215,11 @@ const BulkActions = (props) => {
   );
 };
 
-function RankingProjectsReport(props) {
+function ProjectsPrioritization(props) {
   const translate = useTranslate();
   const classes = useStyles();
-  // const dataProvider = useDataProvider();
-  // const PIPELINE_PHASE_ID = getFeatureValue("has_pipeline_report") || -1;
+  const dataProvider = useDataProvider();
+  const PIPELINE_PHASE_ID = getFeatureValue("has_pipeline_report") || -1;
 
   return (
     <Grid container spacing={3}>
@@ -227,21 +230,20 @@ function RankingProjectsReport(props) {
       />
       <Grid item xs={12} id="report-container">
         <Typography variant="h4" style={{ marginBottom: 20 }}>
-          {"Projects Ranking Report"}
+          {"Prioritize Projects"}
         </Typography>
         <Card className={classes.card}>
           <List
             {...props}
             basePath="/projects"
             resource="projects"
-            bulkActionButtons={false}
-            // actions={<></>}
-            filter={{ ranking_score: 1 }}
+            bulkActionButtons={<BulkActions />}
+            actions={<></>}
+            filter={{ phase_id: 5, current_step: 18 }}
             perPage={25}
             sort={{ field: "ranking_score", order: "DESC" }}
             pagination={<EmptyDashboard />}
             className="report-page"
-            hasCreate={false}
           >
             <Datagrid rowClick={"show"} expand={<AsideRankData {...props} />}>
               <TextField source="code" />
@@ -280,4 +282,4 @@ function RankingProjectsReport(props) {
   );
 }
 
-export default RankingProjectsReport;
+export default ProjectsPrioritization;
