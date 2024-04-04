@@ -67,6 +67,7 @@ import ProjectsTrash from "./views/pages/ProjectsTrash";
 import PublicInvestmentPlan from "./views/pages/reports/PublicInvestmentPlan";
 import QuarterlyAnnualReport from "./views/pages/reports/QuarterlyAnnualReport";
 import RankingProjectsList from "./views/resources/Projects/RankingProjectsList";
+import ProjectsPrioritization from "./views/pages/reports/ProjectsPrioritization";
 import RankingProjectsReport from "./views/pages/reports/RankingProjectsReport";
 import RankingReport from "./views/pages/reports/RankingReport";
 import ReceiptIcon from "@material-ui/icons/Receipt";
@@ -1036,7 +1037,7 @@ export default (props) => {
       path="/prioritize-projects"
       render={(props) =>
         checkFeature("project_has_project_ranking_report") ? (
-          <RankingProjectsReport {...props} />
+          <ProjectsPrioritization {...props} />
         ) : (
           <Typography>No Access</Typography>
         )

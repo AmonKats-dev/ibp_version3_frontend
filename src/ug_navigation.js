@@ -63,6 +63,7 @@ export default [
   },
   {
     title: "Project Prioritization",
+    href: "prioritization",
     icon: <TableChartIcon />,
     permission: "full_access",
     feature: "project_has_project_ranking",
@@ -72,14 +73,12 @@ export default [
         href: "/rank-projects",
         icon: <TableChartIcon />,
         permission: "full_access",
-        translation: "navigation.reports.projects_ranking",
       },
       {
         title: "Prioritize Projects",
         href: "/prioritize-projects",
         icon: <TableChartIcon />,
         permission: "full_access",
-        translation: "navigation.reports.projects_prioritization",
       },
     ],
   },

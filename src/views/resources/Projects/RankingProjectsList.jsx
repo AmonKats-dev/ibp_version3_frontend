@@ -116,6 +116,9 @@ function RankingProjectsList(props) {
 
     return (
       <div style={{ margin: "2em", overflow: "auto" }}>
+        <Typography variant="h4" style={{ marginBottom: 20 }}>
+          {"Rank Projects"}
+        </Typography>
         <Table style={{ overflow: "auto" }}>
           <TableHead>
             <TableRow className={classes.filledRow}>
