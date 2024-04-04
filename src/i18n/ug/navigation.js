@@ -54,6 +54,8 @@ export default {
       projects_public_investment_plan_report:
         "Project Public Investment Plan Report",
       projects_contingency_liability_report: "Contingency Liability Report",
+      projects_ranking: "Projects Ranking",
+      projects_prioritization: "Projects Prioritization",
     },
   },
 };

@@ -63,12 +63,25 @@ export default [
   },
   {
     title: "Project Prioritization",
-    // title: "Prioritize Projects",
-    href: "/ranking",
     icon: <TableChartIcon />,
     permission: "full_access",
     feature: "project_has_project_ranking",
-    translation: "navigation.reports.projects_ranking",
+    children: [
+      {
+        title: "Rank Projects",
+        href: "/rank-projects",
+        icon: <TableChartIcon />,
+        permission: "full_access",
+        translation: "navigation.reports.projects_ranking",
+      },
+      {
+        title: "Prioritize Projects",
+        href: "/prioritize-projects",
+        icon: <TableChartIcon />,
+        permission: "full_access",
+        translation: "navigation.reports.projects_prioritization",
+      },
+    ],
   },
   {
     title: "Report Manager",

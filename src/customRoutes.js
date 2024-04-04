@@ -1022,10 +1022,21 @@ export default (props) => {
     />,
     <Route
       exact
-      path="/ranking"
+      path="/rank-projects"
       render={(props) =>
         checkFeature("project_has_project_ranking_report") ? (
           <RankingProjectsList {...props} />
+        ) : (
+          <Typography>No Access</Typography>
+        )
+      }
+    />,
+    <Route
+      exact
+      path="/prioritize-projects"
+      render={(props) =>
+        checkFeature("project_has_project_ranking_report") ? (
+          <RankingProjectsReport {...props} />
         ) : (
           <Typography>No Access</Typography>
         )
