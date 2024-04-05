@@ -222,7 +222,7 @@ function RankingProjectsReport(props) {
     <Grid container spacing={3}>
       <ExportActions
         reportId="report-container"
-        title="Cost Evolution Report"
+        title="Projects Ranking Report"
         exportTypes={[EXPORT_TYPES.WORD, EXPORT_TYPES.PDF, EXPORT_TYPES.XLS]}
       />
       <Grid item xs={12} id="report-container">
