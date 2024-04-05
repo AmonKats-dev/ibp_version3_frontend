@@ -93,6 +93,36 @@ function MEOverviewForm(props) {
                 fullWidth
               />
             </CustomInput>
+            <CustomInput
+              tooltipText="tooltips.resources.me-reports.fields.gender_equity"
+              fullWidth
+            >
+              <TextInput
+                label={"Gender Equity"}
+                variant="outlined"
+                margin="none"
+                source={`gender_equity`}
+                validate={required()}
+                rows={5}
+                multiline
+                fullWidth
+              />
+            </CustomInput>
+            <CustomInput
+              tooltipText="tooltips.resources.me-reports.fields.social_safe_guards"
+              fullWidth
+            >
+              <TextInput
+                label={"Social Safeguards"}
+                variant="outlined"
+                margin="none"
+                source={`social_safe_guards`}
+                validate={required()}
+                rows={5}
+                multiline
+                fullWidth
+              />
+            </CustomInput>
           </Fragment>
         );
       }}
