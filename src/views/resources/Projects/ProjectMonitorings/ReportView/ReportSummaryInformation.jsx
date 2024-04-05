@@ -88,6 +88,7 @@ export const ReportSummaryInformation = (props) => {
 
   return (
     <div className="landscapeSection">
+      <h2>{"Overview"}</h2>
       <div className="content-area">
         <TableContainer>
           <Table
@@ -109,6 +110,18 @@ export const ReportSummaryInformation = (props) => {
                 <TableCell>{props.record.methodology}</TableCell>
               </TableRow>
               <TableRow>
+                <TableCell>Environmental Issues</TableCell>
+                <TableCell>{props.record.environmental_issues}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Social Safeguards</TableCell>
+                <TableCell>{props.record.social_safe_guards}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Gender Equity</TableCell>
+                <TableCell>{props.record.gender_equity}</TableCell>
+              </TableRow>
+              <TableRow>
                 <TableCell>Funding Source</TableCell>
                 <TableCell>{getFundSources()}</TableCell>
               </TableRow>
@@ -124,7 +137,6 @@ export const ReportSummaryInformation = (props) => {
                   <TableCell>{props.record.disbursement}</TableCell>
                 </TableRow>
               )}
-
 
               <TableRow>
                 <TableCell>Type of M&E Methodology</TableCell>

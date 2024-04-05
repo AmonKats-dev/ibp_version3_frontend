@@ -97,6 +97,8 @@ export default {
           source_of_funds: "Identify the source of funds",
           remarks: "Remarks",
           overall_project_rating: "Overall Rating",
+          gender_equity: "Ender Equity",
+          social_safe_guards: "Social Safeguards",
         },
       },
       roles: {
