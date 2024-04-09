@@ -137,7 +137,6 @@ import ProjectsCostsChart from "./views/pages/reports/ProjectsCostsChart";
 import Matrix from "./views/pages/DCMatrix";
 import ListPBSProjects from "./views/integrations/pbs/list_pbs_projects";
 import BudgetAllocations from "./views/integrations/pbs/budget_allocations";
-import CostClassificationEdit from "./views/resources/Costings/CostClassificationEdit";
 
 const config = getApplicationConfig();
 
@@ -1098,11 +1097,6 @@ export default (props) => {
       path="/project/:id/contingency-liability-report"
       render={(props) => <ContingencyLiabilityReport {...props} />}
     />,
-    <Route
-    exact
-    path="/costing_edit"
-    render={(props) => <CostClassificationEdit {...props} />}
-  />,
     ...orgStructureMenu("organizational_config"),
     ...orgStructureMenu("cost_config"),
     ...orgStructureMenu("fund_config"),
