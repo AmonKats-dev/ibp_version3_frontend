@@ -7,5 +7,5 @@ export default {
     list: OrganizationsList,
     show: OrganizationsShow,
     create: OrganizationsCreate,
-    // edit: OrganizationsEdit,
+    edit: OrganizationsEdit,
 };

@@ -8,6 +8,7 @@ import {
   CreateButton,
   usePermissions,
   ShowButton,
+  EditButton
 } from "react-admin";
 import { useMediaQuery, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
@@ -88,6 +89,7 @@ const OrganizationsList = (props) => {
           <TextField source="parent_id" />
           <TextField source="level" />
           <ShowButton basePath={props.resource} />
+          <EditButton basePath={props.resource} />
         </Datagrid>
       )}
     </List>
