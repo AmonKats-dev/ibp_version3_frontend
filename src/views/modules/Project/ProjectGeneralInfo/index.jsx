@@ -98,6 +98,7 @@ function ProjectGeneralInfo({ record, projectTitle, ...props }) {
   });
   const changeDataAttr = useChangeField({ name: "project_data_changed" });
   const changeName = useChangeField({ name: "name" });
+  const changeClassification = useChangeField({ classification: "classification" });
   const changeStartDateFY = useChangeField({ name: "start_date" });
   const changeEndDateFY = useChangeField({ name: "end_date" });
   const changeRevenueSource = useChangeField({ name: "revenue_source" });
@@ -389,6 +390,18 @@ function ProjectGeneralInfo({ record, projectTitle, ...props }) {
           />
         </CustomInput>
       )}
+         <CustomInput
+          fullWidth
+          tooltipText={"tooltips.resources.project-details.fields.classification"}
+        >
+          <TextInput
+            source="classification"
+            label={translate("resources.project-details.fields.classification")}
+            validate={required()}
+            variant="outlined"
+            margin="none"
+          />
+        </CustomInput>
       <CustomInput
         fullWidth
         tooltipText={"tooltips.resources.project-details.fields.summary"}
@@ -548,28 +561,8 @@ function ProjectGeneralInfo({ record, projectTitle, ...props }) {
         </CustomInput>
       )}
 
-      {props.isNewProject && !hasPimisFields && (
-        <CustomInput
-          fullWidth
-          tooltipText={translate(
-            "tooltips.resources.project-details.fields.classification"
-          )
-            .split("|")
-            .map((text) => (
-              <p key={text}>{text}</p>
-            ))}
-        >
-          <SelectInput
-            options={{ fullWidth: "true" }}
-            label={translate("resources.project-details.fields.classification")}
-            source="classification"
-            choices={generateChoices(PROJECT_CLASSIFICATION)}
-            validate={checkRequired("classification")}
-            variant="outlined"
-            margin="none"
-          />
-        </CustomInput>
-      )}
+    
+     
 
       {props.isNewProject && hasEsnipFields && (
         <CustomInput

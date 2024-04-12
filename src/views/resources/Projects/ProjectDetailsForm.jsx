@@ -196,7 +196,7 @@ function ProjectDetailsForm(props) {
 
     switch (componentName) {
       case PROJECT_STEPS.SUMMARY:
-        return <SummaryForm {...props} projectData={projectData} />;
+        return <SummaryForm {...props} record={record} projectData={projectData} />;
       case PROJECT_STEPS.RESPONSIBLE_OFFICER:
         return <ResponsibleOfficerForm {...props} />;
       case PROJECT_STEPS.PROJECT_BACKGROUND:
