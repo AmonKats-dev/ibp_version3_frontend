@@ -193,6 +193,7 @@ function SummaryForm(props) {
                 record={formData}
                 isNewProject={props.isNewProject}
                 projectTitle={props.projectTitle}
+                projectClassification={props.projectData.classification}
               />
             )}
             <br />
