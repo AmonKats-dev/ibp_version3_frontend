@@ -87,48 +87,51 @@ function MycReport(props) {
         <Table style={{ overflow: "auto" }}>
           <TableHead>
             <TableRow className={classes.filledRow}>
+            <TableCell style={{ minWidth: 350 }}>
+                {"Vote"}
+              </TableCell>
               <TableCell style={{ minWidth: 350 }}>
-                Project Code and Name{" "}
+                {"Project Code and Name"}
               </TableCell>
-              <TableCell style={{ minWidth: 100 }}>Funding Source</TableCell>
-              <TableCell style={{ minWidth: 100 }}>Start Date</TableCell>
-              <TableCell style={{ minWidth: 100 }}>End Date</TableCell>
-              <TableCell style={{ minWidth: 100 }}>Project Status</TableCell>
+              <TableCell style={{ minWidth: 100 }}>{"Funding Source"}</TableCell>
+              <TableCell style={{ minWidth: 100 }}>{"Start Date"}</TableCell>
+              <TableCell style={{ minWidth: 100 }}>{"End Date"}</TableCell>
+              <TableCell style={{ minWidth: 100 }}>{"Project Status"}</TableCell>
               <TableCell style={{ minWidth: 100 }}>
-                Project Classification
-              </TableCell>
-              <TableCell style={{ minWidth: 100 }}>
-                Spending since start of project
+                {"Project Classification"}
               </TableCell>
               <TableCell style={{ minWidth: 100 }}>
-                Approved Budget FY 1
+                {"Spending since start of project"}
               </TableCell>
               <TableCell style={{ minWidth: 100 }}>
-                Estimate of Arrears at end of the current FY 1
+                {"Approved Budget FY "}1
               </TableCell>
               <TableCell style={{ minWidth: 100 }}>
-                Counterpart Funding signed agreements only (value FY 1)
+                {"Estimate of Arrears at end of the current FY 1"}
               </TableCell>
               <TableCell style={{ minWidth: 100 }}>
-                Cash Required for Commitments (FY 1)
+                {"Counterpart Funding signed agreements only (value FY 1)"}
               </TableCell>
               <TableCell style={{ minWidth: 100 }}>
-                Arrears + All Contractual Commitments (FY 1 )
-              </TableCell>
-              <TableCell style={{ minWidth: 100 }}>FY-2 </TableCell>
-              <TableCell style={{ minWidth: 100 }}>FY 3</TableCell>
-              <TableCell style={{ minWidth: 100 }}>FY 4</TableCell>
-              <TableCell style={{ minWidth: 100 }}>FY 5</TableCell>
-              <TableCell style={{ minWidth: 100 }}>
-                Outstanding Commitments
+                {"Cash Required for Commitments (FY 1)"}
               </TableCell>
               <TableCell style={{ minWidth: 100 }}>
-                Cumulative expenditure
+                {"Arrears + All Contractual Commitments (FY 1 )"}
+              </TableCell>
+              <TableCell style={{ minWidth: 100 }}>{"FY-2"}</TableCell>
+              <TableCell style={{ minWidth: 100 }}>{"FY 3"}</TableCell>
+              <TableCell style={{ minWidth: 100 }}>{"FY 4"}</TableCell>
+              <TableCell style={{ minWidth: 100 }}>{"FY 5"}</TableCell>
+              <TableCell style={{ minWidth: 100 }}>
+                {"Outstanding Commitments"}
               </TableCell>
               <TableCell style={{ minWidth: 100 }}>
-                Approved Project Costs by DC as indicated in the PIP
+                {"Cumulative expenditure"}
               </TableCell>
-              <TableCell style={{ minWidth: 100 }}>Comments from MDA</TableCell>
+              <TableCell style={{ minWidth: 100 }}>
+                {"Approved Project Costs by DC as indicated in the PIP"}
+              </TableCell>
+              <TableCell style={{ minWidth: 100 }}>{"Comments from MDA"}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -142,6 +145,7 @@ function MycReport(props) {
                     key={projectData.id}
                     // onClick={handleRedirect(projectData.id)}
                   >
+                    <TableCell>{`${projectData.project_organization.parent.name}`}</TableCell>
                     <TableCell>{`${projectData.code} - ${projectData.name}`}</TableCell>
                     <TableCell>{projectData.myc_data.funding_source}</TableCell>
                     <TableCell>

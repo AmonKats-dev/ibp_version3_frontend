@@ -182,7 +182,7 @@ function Activities(props) {
                 const endDate = moment(end);
                 const dateDiff = endDate.diff(startDate, "days");
 
-                return dateDiff > 1;
+                return dateDiff >= 0;
               };
 
               return (

@@ -402,6 +402,28 @@ function ProjectGeneralInfo({ record, projectTitle, ...props }) {
           />
         </CustomInput>
       )}
+              {props.isNewProject && !hasPimisFields && (
+        <CustomInput
+          fullWidth
+          tooltipText={translate(
+            "tooltips.resources.project-details.fields.classification"
+          )
+            .split("|")
+            .map((text) => (
+              <p key={text}>{text}</p>
+            ))}
+        >
+          <SelectInput
+            options={{ fullWidth: "true" }}
+            label={translate("resources.project-details.fields.classification")}
+            source="classification"
+            choices={generateChoices(PROJECT_CLASSIFICATION)}
+            validate={checkRequired("classification")}
+            variant="outlined"
+            margin="none"
+          />
+        </CustomInput>
+      )}
       <CustomInput
         fullWidth
         tooltipText={"tooltips.resources.project-details.fields.summary"}
@@ -583,6 +605,27 @@ function ProjectGeneralInfo({ record, projectTitle, ...props }) {
           />
         </CustomInput>
      
+    
+     
+
+      {props.isNewProject && hasEsnipFields && (
+        <CustomInput
+          fullWidth
+          tooltipText={
+            "tooltips.resources.project-details.fields.classification"
+          }
+        >
+          <SelectInput
+            options={{ fullWidth: "true" }}
+            label={translate("resources.project-details.fields.classification")}
+            source="classification"
+            choices={generateChoices(PROJECT_TYPE)}
+            validate={checkRequired("classification")}
+            variant="outlined"
+            margin="none"
+          />
+        </CustomInput>
+      )}
 
       {hasProposedFundingSource && !props.isNewProject && (
         <>
