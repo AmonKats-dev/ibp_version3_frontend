@@ -63,6 +63,11 @@ const STATUS = [
   { id: "MODERATELY_SATISFACTORY", name: "Moderately Satisfactory" },
   { id: "SATISFACTORY", name: "Satisfactory" },
 ];
+const STATUSES = [
+  { id: "UNDER_PROCUREMENT", name: "Under Procurement" },
+  { id: "ONGOING", name: "Ongoing" },
+  { id: "COMPLETED", name: "Completed" },
+];
 
 export const PhysicalMonitoringFramework = ({
   record,
@@ -225,6 +230,14 @@ export const PhysicalMonitoringFramework = ({
                         variant="outlined"
                         margin="none"
                         source={`me_outputs[${outputIdx}].output_progress`}
+                      />
+                      <SelectInput
+                        choices={STATUSES}
+                        label="Status" //physical progress state
+                        source={`me_outputs[${outputIdx}].output_state`}
+                        variant="outlined"
+                        margin="none"
+                        fullWidth
                       />
                       <SelectInput
                         choices={STATUS}

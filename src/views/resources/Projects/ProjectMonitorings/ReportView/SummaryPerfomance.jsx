@@ -95,8 +95,11 @@ export const SummaryPerfomance = ({ record, projectDetails, ...props }) => {
             <TableBody>
               <TableRow className={classes.filledRow}>
                 <TableCell align="left">Output / Activity</TableCell>
+                <TableCell align="left">
+                  Output Status
+                </TableCell>
                 <TableCell align="center">
-                  Physical Performance Status
+                  Physical Performance Rating
                 </TableCell>
                 <TableCell align="center">
                   {/* Budgetary Performance Status */}
@@ -146,9 +149,9 @@ export const SummaryPerfomance = ({ record, projectDetails, ...props }) => {
                           smart_count: 1,
                         })} ${outputIdx + 1}: ${output.output.name}`}
                       </TableCell>
-                      {/* <TableCell align="center">
-                        <StatusField value={output.output_status} />
-                      </TableCell> */}
+                      <TableCell align="left" style={{textTransform:"lowercase"}}>
+                        {output.output_state}
+                      </TableCell>
                       <TableCell align="center">
                         <StatusField value={output.output_status} />
                       </TableCell>
