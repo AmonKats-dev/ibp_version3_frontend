@@ -13,6 +13,7 @@ import { useRef } from "react";
 import { useSelector } from "react-redux";
 
 export const ProjectBackGround = (props) => {
+  const phaseId = props.customRecord.phase_id;
   const { customRecord } = props;
   const [locationsData, setLocationsData] = React.useState([]);
   const [interventions, setInterventions] = React.useState([]);
@@ -342,7 +343,7 @@ export const ProjectBackGround = (props) => {
           </p>
           {HTML2React(customRecord.expected_fund_source)}
         </div> */}
-        <div>
+        {phaseId === 5? <div>
           <p>
             <strong>
               {romanize(counter + ".9.")}{" "}
@@ -350,8 +351,9 @@ export const ProjectBackGround = (props) => {
             </strong>
           </p>
           {HTML2React(customRecord.national_scope)}
-        </div>
-        <div>
+        </div> : <></>}
+        
+        {phaseId === 5? <div>
           <p>
             <strong>
               {romanize(counter + ".10.")}{" "}
@@ -359,8 +361,9 @@ export const ProjectBackGround = (props) => {
             </strong>
           </p>
           {HTML2React(customRecord.procurement_plan_description)}
-        </div>
-        <div>
+        </div> : <></>}
+        
+        {phaseId === 5?<div>
           <p>
             <strong>
               {romanize(counter + ".11.")}{" "}
@@ -368,7 +371,8 @@ export const ProjectBackGround = (props) => {
             </strong>
           </p>
           {HTML2React(customRecord.work_plan_description)}
-        </div>
+        </div> : <></>}
+        
       </div>
     </div>
   );
