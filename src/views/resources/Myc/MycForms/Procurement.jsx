@@ -143,11 +143,15 @@ const Procurement = ({ activities, project, arraySource, ...props }) => {
                             </TableCell>
 
                             <TableCell>
-                              <TextInput
+                              <SelectInput
                                 source={getSource("source")}
                                 variant="outlined"
                                 margin="none"
                                 label={false}
+                                choices={[
+                                  { id: "gou", name: "Government of Uganda" },
+                                  { id: "donor", name: "External Financing" },
+                                ]}
                               />
                             </TableCell>
                             <TableCell>
@@ -209,6 +213,9 @@ const Procurement = ({ activities, project, arraySource, ...props }) => {
                                       variant="outlined"
                                       margin="none"
                                       label={false}
+                                      format={commasFormatter}
+                                      parse={commasParser}
+                                      validate={[number()]}
                                       disabled
                                     />
                                   </TableCell>
