@@ -934,7 +934,7 @@ export default {
         target: "Achieved Target",
         planned_target: "Planned Target",
         me_activities: "Activities",
-        status: "Status",
+        status: "Performance Rate",
         expected_completion_date: "Expected Completion Date",
         challenges: "Challenges",
         measures: "Measures",
