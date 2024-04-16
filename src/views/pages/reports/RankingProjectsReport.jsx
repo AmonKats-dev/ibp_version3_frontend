@@ -235,13 +235,14 @@ function RankingProjectsReport(props) {
             basePath="/projects"
             resource="projects"
             bulkActionButtons={false}
-            // actions={<></>}
+            actions={<></>}
             filter={{ ranking_score: 1 }}
             perPage={25}
             sort={{ field: "ranking_score", order: "DESC" }}
             pagination={<EmptyDashboard />}
             className="report-page"
             hasCreate={false}
+            
           >
             <Datagrid rowClick={"show"} expand={<AsideRankData {...props} />}>
               <TextField source="code" />
