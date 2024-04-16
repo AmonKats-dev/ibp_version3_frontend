@@ -98,7 +98,6 @@ function ProjectGeneralInfo({ record, projectTitle, ...props }) {
   });
   const changeDataAttr = useChangeField({ name: "project_data_changed" });
   const changeName = useChangeField({ name: "name" });
-  const changeClassification = useChangeField({ classification: "classification" });
   const changeStartDateFY = useChangeField({ name: "start_date" });
   const changeEndDateFY = useChangeField({ name: "end_date" });
   const changeRevenueSource = useChangeField({ name: "revenue_source" });
@@ -390,18 +389,28 @@ function ProjectGeneralInfo({ record, projectTitle, ...props }) {
           />
         </CustomInput>
       )}
-         <CustomInput
+              {props.isNewProject && !hasPimisFields && (
+        <CustomInput
           fullWidth
-          tooltipText={"tooltips.resources.project-details.fields.classification"}
+          tooltipText={translate(
+            "tooltips.resources.project-details.fields.classification"
+          )
+            .split("|")
+            .map((text) => (
+              <p key={text}>{text}</p>
+            ))}
         >
-          <TextInput
-            source="classification"
+          <SelectInput
+            options={{ fullWidth: "true" }}
             label={translate("resources.project-details.fields.classification")}
-            validate={required()}
+            source="classification"
+            choices={generateChoices(PROJECT_CLASSIFICATION)}
+            validate={checkRequired("classification")}
             variant="outlined"
             margin="none"
           />
         </CustomInput>
+      )}
       <CustomInput
         fullWidth
         tooltipText={"tooltips.resources.project-details.fields.summary"}
