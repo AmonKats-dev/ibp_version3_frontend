@@ -64,8 +64,8 @@ export default function ProjectsPipeline(props) {
         bulkActionButtons={false}
         actions={false}
         // filter={{ is_deleted: false, phase_id: 3 }} //TODO change 3 with feature
-        filter={{ is_deleted: false, phase_ids: [5, 6, 7] }}
-        perPage={checkFeature("has_pimis_fields") ? 5 : 10}
+        filter={{ is_deleted: false, phase_ids: [5] }}
+        perPage={25}
         pagination={<EmptyDashboard />}
       >
         <Datagrid rowClick={"show"}>

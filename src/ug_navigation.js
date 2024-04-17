@@ -561,7 +561,7 @@ export default [
   },
   {
     title: "Implementation Data",
-    href: "/projects",
+    // href: "/",
     icon: <FolderOutlinedIcon />,
     permission: "list_projects",
     children: [
