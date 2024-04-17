@@ -81,9 +81,7 @@ function BudgetAllocationForm(props) {
             !formData.financing_agreement_date;
           const ibpValidation =
             !formData?.budget_code ||
-            !formData?.signed_date ||
-            !formData?.coordinator ||
-            !formData?.me_creator;
+            !formData?.signed_date 
 
           const isDisabledTab = checkFeature("has_pimis_fields")
             ? pimisValidation
@@ -141,7 +139,7 @@ function BudgetAllocationForm(props) {
                     fullWidth
                   />
                 )}
-                {checkFeature("has_budgeting_coordinator") && (
+                {/* {checkFeature("has_budgeting_coordinator") && (
                   <>
                     <CustomInput
                       tooltipText={
@@ -149,21 +147,6 @@ function BudgetAllocationForm(props) {
                       }
                       fullWidth
                     >
-                      {/* <ReferenceInput
-                        sort={{ field: "username", order: "ASC" }}
-                        label={"Coordinator"}
-                        validate={checkRequired("coordinator_id")}
-                        perPage={-1}
-                        source={"coordinator_id"}
-                        reference="users"
-                        filter={{ is_deleted: false }}
-                      >
-                        <SelectInput
-                          optionText="full_name"
-                          margin="normal"
-                          variant="outlined"
-                        />
-                      </ReferenceInput> */}
                       <TextInput
                         source="coordinator"
                         label={"Coordinator"}
@@ -180,21 +163,6 @@ function BudgetAllocationForm(props) {
                       label={""}
                       fullWidth
                     >
-                      {/* <ReferenceInput
-                        sort={{ field: "username", order: "ASC" }}
-                        label={"M&E Creator"}
-                        validate={checkRequired("me_creator_id")}
-                        perPage={-1}
-                        source={"me_creator_id"}
-                        reference="users"
-                        filter={{ is_deleted: false }}
-                      >
-                        <SelectInput
-                          optionText="full_name"
-                          margin="normal"
-                          variant="outlined"
-                        />
-                      </ReferenceInput> */}
                       <TextInput
                         source="me_creator"
                         label={"M&E Creator"}
@@ -205,7 +173,7 @@ function BudgetAllocationForm(props) {
                       />
                     </CustomInput>
                   </>
-                )}
+                )} */}
               </div>
               <div style={{ display: activeTab === 1 ? "block" : "none" }}>
                 <Table>
