@@ -106,11 +106,11 @@ export const PhysicalMonitoringFramework = ({
                 <TableCell colspan={fiscalYearsFromProps.length + 1}>
                   {translate("printForm.result_matrix.indicator")}
                 </TableCell>
-                <TableCell rowspan={2}>
+                {/* <TableCell rowspan={2}>
                   <CustomInput tooltipText="tooltips.resources.me-reports.fields.target">
                     Achieved Target
                   </CustomInput>
-                </TableCell>
+                </TableCell> */}
               </TableRow>
               <TableRow>
                 <TableCell>{`${translate("printForm.result_matrix.baseline")} ${
@@ -119,18 +119,23 @@ export const PhysicalMonitoringFramework = ({
                     moment(projectDetails.baseline, "YYYY-MM-DD")
                   ).name
                 }`}</TableCell>
-                {fiscalYearsFromProps.map((year) => (
-                  <TableCell>
-                    <strong>{`${translate("printForm.result_matrix.target")} ${
-                      year.name
-                    }`}</strong>
-                  </TableCell>
-                ))}
+                {fiscalYearsFromProps.map((year) => {
+                  if(record.year === parseInt(year.id)){
+                    return(<TableCell>
+                      <strong>{`${translate("printForm.result_matrix.target")} ${
+                        year.name
+                      }`}</strong>
+                    </TableCell>);
+                  }                
+})}
+    <TableCell align="center">
+                      <strong>{"Achieved Target"}</strong>
+                    </TableCell>
               </TableRow>
-
+          
               <TableRow className={classes.filledRow}>
                 <TableCell colSpan={fiscalYearsFromProps.length + 1 + 2 + 4}>
-                  {translate("printForm.project_framework.output", {
+                  {translate(" .project_framework.output", {
                     smart_count: 2,
                   })}
                 </TableCell>
@@ -159,18 +164,20 @@ export const PhysicalMonitoringFramework = ({
                           indicator.name
                         }`}</TableCell>
                         <TableCell>{indicator.baseline}</TableCell>
-                        {fiscalYearsFromProps.map((year) => (
-                          <TableCell>
-                            {indicator.targets[Number(year.id)]}
-                          </TableCell>
-                        ))}
-                        <TableCell>
+                        {fiscalYearsFromProps.map((year) => {
+                          if(parseInt(year.id)===record.year){
+                            return(<TableCell >
+                              {indicator.targets[Number(year.id)]}
+                            </TableCell>)
+}})}
+                        <TableCell  align="center">
                           <TextInput
                             label={false}
                             variant="outlined"
                             margin="none"
                             source={`me_outputs[${outputIdx}].indicators[${idx}].target`}
-                            style={{ width: "220px" }}
+                            style={{ width: "95%" }}
+                           
                           />
                         </TableCell>
                       </TableRow>
