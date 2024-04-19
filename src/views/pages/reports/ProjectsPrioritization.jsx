@@ -171,7 +171,7 @@ const BulkActions = (props) => {
           <div>
             <FileUploader
               meta={{
-                current_step: 19, // Ranking phase timeline step
+                current_step: 18, // Ranking phase timeline step
                 phase_id: 5, // Ranking phase ID
                 ranking_report: true,
               }}
