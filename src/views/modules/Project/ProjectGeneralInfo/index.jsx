@@ -98,7 +98,6 @@ function ProjectGeneralInfo({ record, projectTitle, ...props }) {
   });
   const changeDataAttr = useChangeField({ name: "project_data_changed" });
   const changeName = useChangeField({ name: "name" });
-  const changeClassification = useChangeField({ name: "classification" });
   const changeStartDateFY = useChangeField({ name: "start_date" });
   const changeEndDateFY = useChangeField({ name: "end_date" });
   const changeRevenueSource = useChangeField({ name: "revenue_source" });
@@ -181,13 +180,7 @@ function ProjectGeneralInfo({ record, projectTitle, ...props }) {
     }
   }, [record && record.project]);
 
-  useEffect(() => {
-    if (record && record.project) {
-      if (values && !values.classification) {
-        changeClassification(record.project.classification);
-      }
-    }
-  }, [record && record.project]);
+  
 
   useEffect(() => {
     if (hasTitleChangeEnable && !hasProjectDataChangeEnable) {
@@ -196,9 +189,6 @@ function ProjectGeneralInfo({ record, projectTitle, ...props }) {
       }
     }
 
-    if (values && values.classification !== initial.classification) {
-      changeDataAttr(true);
-    }
 
     if (hasProjectDataChangeEnable) {
       if (values) {
@@ -402,26 +392,7 @@ function ProjectGeneralInfo({ record, projectTitle, ...props }) {
           />
         </CustomInput>
       )}
-        <CustomInput
-          fullWidth
-          tooltipText={translate(
-            "tooltips.resources.project-details.fields.classification"
-          )
-            .split("|")
-            .map((text) => (
-              <p key={text}>{text}</p>
-            ))}
-        >
-          <SelectInput
-            options={{ fullWidth: "true" }}
-            label={translate("resources.project-details.fields.classification")}
-            source="classification"
-            choices={generateChoices(PROJECT_CLASSIFICATION)}
-            validate={checkRequired("classification")}
-            variant="outlined"
-            margin="none"
-          />
-        </CustomInput>
+       
       <CustomInput
         fullWidth
         tooltipText={"tooltips.resources.project-details.fields.summary"}
