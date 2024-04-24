@@ -81,11 +81,11 @@ const HumanResourcesCreate = (props) => {
 
   function getTitle() {
     return (
-      <h1 style={{ width: "100%" }}>
+      <h2 style={{ width: "100%" }}>
         {projectDetails &&
           projectDetails.project &&
           `${projectDetails.project.code} - ${projectDetails.project.name}`}
-      </h1>
+      </h2>
     );
   }
 
@@ -113,7 +113,7 @@ const HumanResourcesCreate = (props) => {
             // style={{ margin: "10px 0px" }}
           />
         </div>
-
+          <h1>{"Create Human Resource"}</h1>
         {getTitle()}
 
         <FormDataConsumer>

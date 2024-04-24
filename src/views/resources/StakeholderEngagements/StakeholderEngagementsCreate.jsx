@@ -18,6 +18,7 @@ import { formatValuesToQuery } from "../../../helpers/dataHelpers"; //Amon
 import { getFiscalYearsRangeForIntervals } from "../../../helpers/formatters";
 import CustomInput from "../../components/CustomInput";
 import CustomToolbar from "../../components/CustomToolbar";
+import { Typography } from "@material-ui/core";
 
 const StakeholderEngagementsCreate = (props) => {
   const [dateRange, setDateRange] = React.useState([]);
@@ -55,11 +56,11 @@ const StakeholderEngagementsCreate = (props) => {
 
   function getTitle() {
     return (
-      <h1 style={{ width: "100%" }}>
+      <h2 style={{ width: "100%" }}>
         {projectDetails &&
           projectDetails.project &&
           `${projectDetails.project.code} - ${projectDetails.project.name}`}
-      </h1>
+      </h2>
     );
   }
 
@@ -112,7 +113,9 @@ const StakeholderEngagementsCreate = (props) => {
           />
         </div>
 
+            <h1>{"Create Stakeholder"}</h1>
         {getTitle()}
+
 
         <FormDataConsumer>
           {({ getSource, scopedFormData, formData, ...rest }) => {

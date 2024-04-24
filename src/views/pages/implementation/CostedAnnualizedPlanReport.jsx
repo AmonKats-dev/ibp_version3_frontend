@@ -254,7 +254,16 @@ function CostedAnnualizedPlanReport(props) {
                   props.match?.params?.id
                 )}/list`
               );
-            } else if (resource === "appeals") {
+            } 
+           else if (resource === "human-resources") {
+            setCurrentRes(resource);
+            redirectTo(
+              `/human-resources/${Number(
+                props.match?.params?.id
+              )}/list`
+            );
+          }
+            else if (resource === "appeals") {
               setCurrentRes(resource);
               redirectTo(`/appeals/${Number(props.match?.params?.id)}/list`);
             } else {
@@ -266,11 +275,10 @@ function CostedAnnualizedPlanReport(props) {
         >
           {resource === "risk-assessments" ||
           resource === "stakeholder-engagements" ||
-          resource === "appeals"
+          resource === "appeals" || resource === "human-resources"
             ? "Manage"
             : "Update"}
         </Button>,
-        resource !== "appeals" && (
           <Button
             className={classes.actionBtn}
             variant="contained"
@@ -288,7 +296,6 @@ function CostedAnnualizedPlanReport(props) {
           >
             View Report
           </Button>
-        ),
       ];
     }
 
