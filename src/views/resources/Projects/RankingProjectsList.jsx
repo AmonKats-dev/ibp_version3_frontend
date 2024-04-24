@@ -617,7 +617,7 @@ Score Low for projects with no evidence of interlinkages with other votes within
           resource="projects"
           bulkActionButtons={false}
           actions={false}
-          filter={{ phase_id: 5, current_step: 18 }}
+          filter={{ phase_id: 5, current_step: 19 }}
           pagination={<EmptyDashboard />}
           sort={{ field: "id", order: "DESC" }}
         >

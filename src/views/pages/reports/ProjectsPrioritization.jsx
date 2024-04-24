@@ -171,7 +171,7 @@ const BulkActions = (props) => {
           <div>
             <FileUploader
               meta={{
-                current_step: 18, // Ranking phase timeline step
+                current_step: 19, // Ranking phase timeline step
                 phase_id: 5, // Ranking phase ID
                 ranking_report: true,
               }}
@@ -239,7 +239,7 @@ function ProjectsPrioritization(props) {
             resource="projects"
             bulkActionButtons={<BulkActions />}
             actions={<></>}
-            filter={{ phase_id: 5, current_step: 18 }}
+            filter={{ phase_id: 5, current_step: 19 }}
             perPage={25}
             sort={{ field: "ranking_score", order: "DESC" }}
             pagination={<EmptyDashboard />}
