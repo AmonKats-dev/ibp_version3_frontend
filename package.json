@@ -60,6 +60,10 @@
     "save": "^2.4.0",
     "styled-components": "^5.2.0"
   },
+  "devDependencies": {
+    "ajv": "6.12.6",
+    "ajv-keywords": "3.5.2"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -82,7 +86,8 @@
     ]
   },
   "overrides": {
-    "ajv": "^6.12.6",
-    "ajv-keywords": "^3.5.2"
+    "ajv": "6.12.6",
+    "ajv-keywords": "3.5.2",
+    "schema-utils": "2.7.1"
   }
 }
