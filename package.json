@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^21.0.0",
-    "@ckeditor/ckeditor5-react": "^2.1.0",
+    "@ckeditor/ckeditor5-react": "^7.0.0",
     "@date-io/date-fns": "^2.17.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -61,8 +61,8 @@
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
-    "ajv": "8.17.1",
-    "ajv-keywords": "5.1.0"
+    "ajv": "6.12.6",
+    "ajv-keywords": "3.5.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -86,7 +86,13 @@
     ]
   },
   "overrides": {
-    "ajv": "8.17.1",
-    "ajv-keywords": "5.1.0"
+    "ajv": "6.12.6",
+    "ajv-keywords": "3.5.2",
+    "fork-ts-checker-webpack-plugin": {
+      "schema-utils": {
+        "ajv": "6.12.6",
+        "ajv-keywords": "3.5.2"
+      }
+    }
   }
 }
