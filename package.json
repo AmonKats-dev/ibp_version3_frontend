@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "16.x"
+    "node": "24.x"
   },
   "overrides": {
-    "ajv": "^8.12.0"
+    "ajv": "^8.12.0",
+    "ajv-keywords": "^5.1.0",
+    "schema-utils": "^4.0.0"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^21.0.0",
@@ -48,10 +50,10 @@
     "prop-types": "^15.7.2",
     "query-string": "^5.1.1",
     "ra-data-json-server": "^3.8.4",
-    "react": "^16.13.1",
+    "react": "^18.2.0",
     "react-admin": "^3.15.0",
     "react-chartjs-2": "^2.10.0",
-    "react-dom": "^16.13.1",
+    "react-dom": "^18.2.0",
     "react-geocode": "^0.2.3",
     "react-idle-timer": "^4.6.2",
     "react-loadable": "^5.5.0",
