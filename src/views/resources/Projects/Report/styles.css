@@ -64,7 +64,8 @@
 }
 
 .title-page-doc .logo {
-  background: url("/assets/img/logo.png");
+  background: url("assets/img/logo.png") no-repeat center;
+  background-size: contain;
 }
 
 .pageBreak {
