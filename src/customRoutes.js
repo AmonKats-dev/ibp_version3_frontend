@@ -74,7 +74,7 @@ import ReportBuilder from "./views/pages/ReportBuilder";
 import ReportViewer from "./views/pages/ReportViewer";
 import ResetPasswordPageWithTheme from "./views/pages/ResetPasswordPage";
 import RoomIcon from "@material-ui/icons/Room";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import SectorsCount from "./views/pages/reports/SectorsCount";
 import StagnantProjects from "./views/pages/reports/StagnantProjects";
 import StorageIcon from "@material-ui/icons/Storage";
@@ -176,6 +176,13 @@ function orgStructureMenu(configElement) {
 
 export default (props) => {
   return [
+    <Route
+      exact
+      path="/"
+      render={() => (
+        <Redirect to={checkFeature("has_pimis_fields") ? "/projects" : "/dashboard"} />
+      )}
+    />,
     <Route
       exact
       noLayout

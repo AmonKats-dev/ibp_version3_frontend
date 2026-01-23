@@ -395,13 +395,14 @@ function toggleBaselines(toggle) {
 }
 
 function toggleProgressLine() {
-  if (ganttProjectChart.ext.overlay.isOverlayVisible(lineOverlay)) {
+  const overlay = getLineOverlay();
+  if (overlay && ganttProjectChart.ext.overlay.isOverlayVisible(overlay)) {
     ganttProjectChart.config.readonly = false;
-    ganttProjectChart.ext.overlay.hideOverlay(lineOverlay);
+    ganttProjectChart.ext.overlay.hideOverlay(overlay);
     ganttProjectChart.$root.classList.remove("overlay_visible");
-  } else {
+  } else if (overlay) {
     ganttProjectChart.config.readonly = true;
-    ganttProjectChart.ext.overlay.showOverlay(lineOverlay);
+    ganttProjectChart.ext.overlay.showOverlay(overlay);
     ganttProjectChart.$root.classList.add("overlay_visible");
   }
 
@@ -427,9 +428,15 @@ function enableFastTracking() {
 
 var myChart;
 
-var lineOverlay = ganttProjectChart.ext.overlay.addOverlay(function (
-  container
-) {
+// Lazy initialization of lineOverlay to avoid accessing ganttProjectChart at module load
+let lineOverlay = null;
+function getLineOverlay() {
+  if (!lineOverlay) {
+    const chart = initGanttProjectChart();
+    if (chart && chart.ext && chart.ext.overlay) {
+      lineOverlay = chart.ext.overlay.addOverlay(function (
+        container
+      ) {
   var scaleLabels = [];
 
   var chartScale = getChartScaleRange();
@@ -579,7 +586,11 @@ var lineOverlay = ganttProjectChart.ext.overlay.addOverlay(function (
     },
   });
   return canvas;
-});
+      });
+    }
+  }
+  return lineOverlay;
+}
 
 function getScalePaddings() {
   var scale = ganttProjectChart.getScale();
