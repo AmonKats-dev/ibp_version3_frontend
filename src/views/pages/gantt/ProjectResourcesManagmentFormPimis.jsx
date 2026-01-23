@@ -23,14 +23,58 @@ let CRITICAL_PATH = false;
 var SHOW_SLACK = false;
 var FAST_TRACKING = false;
 
-const ganttProjectChart = Gantt.getGanttInstance();
+// Use the global gantt object from dhtmlx-gantt (standard version)
+// Gantt.getGanttInstance() is only available in Commercial/Enterprise versions
+let ganttProjectChartInstance = null;
+function initGanttProjectChart() {
+  if (!ganttProjectChartInstance) {
+    // Try global gantt first (standard version)
+    if (typeof gantt !== 'undefined') {
+      ganttProjectChartInstance = gantt;
+    } else if (window.gantt) {
+      ganttProjectChartInstance = window.gantt;
+    } else if (Gantt && typeof Gantt.getGanttInstance === 'function') {
+      // Fallback to getGanttInstance if available (Commercial version)
+      ganttProjectChartInstance = Gantt.getGanttInstance();
+    } else {
+      return null;
+    }
+    if (ganttProjectChartInstance) {
+      if (typeof ganttProjectChartInstance.plugins === 'function') {
+        ganttProjectChartInstance.plugins({
+          grouping: true,
+          auto_scheduling: true,
+          critical_path: true,
+          overlay: true,
+          marker: true,
+        });
+      }
+    }
+  }
+  return ganttProjectChartInstance;
+}
 
-ganttProjectChart.plugins({
-  grouping: true,
-  auto_scheduling: true,
-  critical_path: true,
-  overlay: true,
-  marker: true,
+// Proxy to lazily initialize on first access
+const ganttProjectChart = new Proxy({}, {
+  get(target, prop) {
+    const instance = initGanttProjectChart();
+    if (!instance) {
+      console.warn('Gantt is not available yet');
+      return undefined;
+    }
+    if (typeof instance[prop] === 'function') {
+      return instance[prop].bind(instance);
+    }
+    return instance[prop];
+  },
+  set(target, prop, value) {
+    const instance = initGanttProjectChart();
+    if (instance) {
+      instance[prop] = value;
+      return true;
+    }
+    return false;
+  }
 });
 
 var zoomConfig = {
@@ -105,8 +149,14 @@ var zoomConfig = {
   ],
 };
 
-ganttProjectChart.ext.zoom.init(zoomConfig);
-ganttProjectChart.ext.zoom.setLevel("year");
+// Initialize zoom when Gantt is available (will be called in component)
+function initZoom() {
+  const chart = initGanttProjectChart();
+  if (chart && chart.ext && chart.ext.zoom) {
+    chart.ext.zoom.init(zoomConfig);
+    chart.ext.zoom.setLevel("year");
+  }
+}
 
 const UNASSIGNED_ID = 15;
 const WORK_DAY = 8;
@@ -1689,6 +1739,19 @@ function ProjectResourcesManagmentFormPimis({ humanResources, ...props }) {
     localStorage.removeItem("task");
     localStorage.removeItem("link");
     localStorage.removeItem("staff");
+  }, []);
+
+  // Initialize Gantt and zoom when component mounts
+  useEffect(() => {
+    const chart = initGanttProjectChart();
+    if (chart) {
+      initZoom();
+      // Initialize other module-level configurations
+      if (chart.ext && chart.ext.zoom) {
+        chart.ext.zoom.init(zoomConfig);
+        chart.ext.zoom.setLevel("year");
+      }
+    }
   }, []);
 
   useEffect(() => {

@@ -10,7 +10,23 @@ import { gantt, Gantt } from "dhtmlx-gantt";
 import { useTranslate } from "react-admin";
 import { checkFeature } from "../../../helpers/checkPermission";
 
-const ganttChart = Gantt.getGanttInstance();
+// Use the global gantt object from dhtmlx-gantt (standard version)
+// Gantt.getGanttInstance() is only available in Commercial/Enterprise versions
+let ganttChart = null;
+function initGanttChart() {
+  if (!ganttChart) {
+    // Use the global gantt object for standard version
+    if (typeof gantt !== 'undefined') {
+      ganttChart = gantt;
+    } else if (window.gantt) {
+      ganttChart = window.gantt;
+    } else if (Gantt && typeof Gantt.getGanttInstance === 'function') {
+      // Fallback to getGanttInstance if available (Commercial version)
+      ganttChart = Gantt.getGanttInstance();
+    }
+  }
+  return ganttChart;
+}
 
 function getActivitiesForOutput(record, outputId) {
   return record.activities.filter((activity) =>
@@ -23,12 +39,24 @@ function GanttChartView(props) {
   let history = useHistory();
   const translate = useTranslate();
 
+  // Initialize Gantt instance on component mount
   useEffect(() => {
+    initGanttChart();
+  }, []);
+
+  useEffect(() => {
+    if (!ganttChart) {
+      initGanttChart();
+      if (!ganttChart) {
+        return; // Gantt not available yet
+      }
+    }
+
     const startDateYear = moment(props.record.start_date);
     const endDateYear = moment(props.record.end_date);
     const dateDiff = endDateYear.diff(startDateYear, "years") + 1;
 
-    if (props && props.record) {
+    if (props && props.record && ganttChart) {
       const dataProject = {
         id: props.record.project_id,
         name: props.record?.project?.name || "Project",
@@ -137,7 +165,14 @@ function GanttChartView(props) {
   }, [props]);
 
   useEffect(() => {
-    if (chartData && chartData.activities?.length > 0) {
+    if (!ganttChart) {
+      initGanttChart();
+      if (!ganttChart) {
+        return; // Gantt not available yet
+      }
+    }
+
+    if (chartData && chartData.activities?.length > 0 && ganttChart) {
       ganttChart.clearAll();
       ganttChart.parse({
         data: [
@@ -165,6 +200,13 @@ function GanttChartView(props) {
   }, [chartData]);
 
   useEffect(() => {
+    if (!ganttChart) {
+      initGanttChart();
+      if (!ganttChart) {
+        return; // Gantt not available yet
+      }
+    }
+
     ganttChart.config.columns = [
       {
         name: "text",
@@ -248,6 +290,13 @@ function GanttChartView(props) {
   }, []);
 
   useEffect(() => {
+    if (!ganttChart) {
+      initGanttChart();
+      if (!ganttChart) {
+        return; // Gantt not available yet
+      }
+    }
+
     if (
       localStorage.getItem("ganttChartInit") &&
       localStorage.getItem("ganttChartInit") !== "project"
@@ -255,7 +304,9 @@ function GanttChartView(props) {
       localStorage.removeItem("ganttChartInit");
       history.go(0);
     }
-    ganttChart.init("gantt_here");
+    if (ganttChart) {
+      ganttChart.init("gantt_here");
+    }
     localStorage.setItem("ganttChartInit", "project");
 
     return () => {

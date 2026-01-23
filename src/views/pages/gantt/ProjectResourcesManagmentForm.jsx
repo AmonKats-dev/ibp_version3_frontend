@@ -16,14 +16,58 @@ import { costSumFormatter } from "../../../helpers";
 import ResourceDialog from "../../resources/ProjectManagement/ResourceDialog";
 import { setBreadCrumps } from "../../../actions/ui";
 
-const ganttProjectChart = Gantt.getGanttInstance();
+// Use the global gantt object from dhtmlx-gantt (standard version)
+// Gantt.getGanttInstance() is only available in Commercial/Enterprise versions
+let ganttProjectChartInstance = null;
+function initGanttProjectChart() {
+  if (!ganttProjectChartInstance) {
+    // Try global gantt first (standard version)
+    if (typeof gantt !== 'undefined') {
+      ganttProjectChartInstance = gantt;
+    } else if (window.gantt) {
+      ganttProjectChartInstance = window.gantt;
+    } else if (Gantt && typeof Gantt.getGanttInstance === 'function') {
+      // Fallback to getGanttInstance if available (Commercial version)
+      ganttProjectChartInstance = Gantt.getGanttInstance();
+    } else {
+      return null;
+    }
+    if (ganttProjectChartInstance) {
+      if (typeof ganttProjectChartInstance.plugins === 'function') {
+        ganttProjectChartInstance.plugins({
+          grouping: true,
+          auto_scheduling: true,
+          critical_path: true,
+          overlay: true,
+          marker: true,
+        });
+      }
+    }
+  }
+  return ganttProjectChartInstance;
+}
 
-ganttProjectChart.plugins({
-  grouping: true,
-  auto_scheduling: true,
-  critical_path: true,
-  overlay: true,
-  marker: true,
+// Proxy to lazily initialize on first access
+const ganttProjectChart = new Proxy({}, {
+  get(target, prop) {
+    const instance = initGanttProjectChart();
+    if (!instance) {
+      console.warn('Gantt is not available yet');
+      return undefined;
+    }
+    if (typeof instance[prop] === 'function') {
+      return instance[prop].bind(instance);
+    }
+    return instance[prop];
+  },
+  set(target, prop, value) {
+    const instance = initGanttProjectChart();
+    if (instance) {
+      instance[prop] = value;
+      return true;
+    }
+    return false;
+  }
 });
 
 const UNASSIGNED_ID = 15;
@@ -1222,6 +1266,10 @@ ganttProjectChart.createDataProcessor(function (mode, taskState, data, rowId) {
 });
 
 function ProjectResourcesManagmentForm({ humanResources, ...props }) {
+  // Initialize Gantt when component mounts
+  useEffect(() => {
+    initGanttProjectChart();
+  }, []);
   const [fastTracking, setFastTracking] = useState(false);
   const [showSlack, setShowSlack] = useState(false);
   const [criticalPath, setCriticalPath] = useState(false);
