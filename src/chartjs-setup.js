@@ -7,12 +7,16 @@ if (typeof window !== "undefined") {
 }
 
 // Ensure Chart.defaults exists for react-chartjs-2
-if (Chart && Chart.defaults) {
+// This prevents ESLint errors about setting properties on undefined
+if (Chart) {
+  if (!Chart.defaults) {
+    Chart.defaults = {};
+  }
   if (!Chart.defaults.global) {
-    Chart.defaults.global = Chart.defaults.global || {};
+    Chart.defaults.global = {};
   }
   if (!Chart.defaults.global.defaultMeta) {
-    Chart.defaults.global.defaultMeta = Chart.defaults.global.defaultMeta || {};
+    Chart.defaults.global.defaultMeta = {};
   }
 }
 
