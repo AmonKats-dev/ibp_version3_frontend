@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../chartjs-setup';
+import '../../../chartjs-setup';
 import {Bar} from 'react-chartjs-2';
 import dataProvider from '../../providers/dataProvider';
 import lodash from 'lodash';
