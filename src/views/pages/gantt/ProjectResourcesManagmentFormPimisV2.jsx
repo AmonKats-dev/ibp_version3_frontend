@@ -22,87 +22,121 @@ function ProjectResourcesManagmentFormPimis({ humanResources, ...props }) {
 
   useEffect(() => {
     if (ref.current) {
-      setGanttInstance(
-        Gantt.getGanttInstance({
-          plugins: {
-            grouping: true,
-            auto_scheduling: true,
-            critical_path: true,
-            overlay: true,
-            marker: true,
-          },
-          container: ref.current,
-          config: {
-            work_time: true,
-            duration_unit: "minute",
-            auto_scheduling_compatibility: true,
-            auto_scheduling: true,
-            auto_scheduling_strict: true,
-            auto_scheduling_initial: true,
-            start_date: new Date(2020, 0, 1),
-            end_date: new Date(2021, 0, 1),
-          },
-          data: {
-            tasks: [
-              {
-                id: 11,
-                text: "Project #1",
-                type: "project",
-                open: true,
-                parent: 0,
-              },
-              {
-                id: 1,
-                start_date: "05-04-2020",
-                text: "1",
-                duration: 1,
-                parent: "11",
-                type: "task",
-              },
-              {
-                id: 2,
-                start_date: "05-04-2020",
-                text: "2",
-                duration: 3,
-                parent: "11",
-                type: "task",
-              },
-              {
-                id: 3,
-                start_date: "05-04-2020",
-                text: "3",
-                duration: 3,
-                parent: "11",
-                type: "task",
-              },
-              {
-                id: 4,
-                start_date: "05-04-2020",
-                text: "4",
-                duration: 3,
-                parent: "11",
-                type: "task",
-              },
-              {
-                id: 5,
-                start_date: "05-04-2020",
-                text: "5",
-                duration: 1,
-                parent: "11",
-                type: "task",
-              },
-            ],
-            links: [
-              { source: "1", target: "2", type: "0", id: 1 },
-              { source: "1", target: "3", type: "0", id: 2 },
-              { source: "1", target: "4", type: "0", id: 3 },
-              { source: "2", target: "4", type: "0", id: 4 },
-              { source: "3", target: "4", type: "0", id: 5 },
-              { source: "4", target: "5", type: "0", id: 6 },
-            ],
-          },
-        })
-      );
+      // Try to get Gantt instance, with fallback to global gantt
+      let instance = null;
+      if (typeof Gantt !== 'undefined' && Gantt && typeof Gantt.getGanttInstance === 'function') {
+        try {
+          instance = Gantt.getGanttInstance({
+            plugins: {
+              grouping: true,
+              auto_scheduling: true,
+              critical_path: true,
+              overlay: true,
+              marker: true,
+            },
+            container: ref.current,
+            config: {
+              work_time: true,
+              duration_unit: "minute",
+              auto_scheduling_compatibility: true,
+              auto_scheduling: true,
+              auto_scheduling_strict: true,
+              auto_scheduling_initial: true,
+              start_date: new Date(2020, 0, 1),
+              end_date: new Date(2021, 0, 1),
+            },
+            data: {
+              tasks: [
+                {
+                  id: 11,
+                  text: "Project #1",
+                  type: "project",
+                  open: true,
+                  parent: 0,
+                },
+                {
+                  id: 1,
+                  start_date: "05-04-2020",
+                  text: "1",
+                  duration: 1,
+                  parent: "11",
+                  type: "task",
+                },
+                {
+                  id: 2,
+                  start_date: "05-04-2020",
+                  text: "2",
+                  duration: 3,
+                  parent: "11",
+                  type: "task",
+                },
+                {
+                  id: 3,
+                  start_date: "05-04-2020",
+                  text: "3",
+                  duration: 3,
+                  parent: "11",
+                  type: "task",
+                },
+                {
+                  id: 4,
+                  start_date: "05-04-2020",
+                  text: "4",
+                  duration: 3,
+                  parent: "11",
+                  type: "task",
+                },
+                {
+                  id: 5,
+                  start_date: "05-04-2020",
+                  text: "5",
+                  duration: 1,
+                  parent: "11",
+                  type: "task",
+                },
+              ],
+              links: [
+                { source: "1", target: "2", type: "0", id: 1 },
+                { source: "1", target: "3", type: "0", id: 2 },
+                { source: "1", target: "4", type: "0", id: 3 },
+                { source: "2", target: "4", type: "0", id: 4 },
+                { source: "3", target: "4", type: "0", id: 5 },
+                { source: "4", target: "5", type: "0", id: 6 },
+              ],
+            },
+          });
+        } catch (e) {
+          console.warn('Failed to get Gantt instance, using global gantt:', e);
+          // Fallback to global gantt if available
+          if (typeof gantt !== 'undefined' && gantt) {
+            instance = gantt;
+            if (ref.current) {
+              instance.init(ref.current);
+            }
+          } else if (window.gantt) {
+            instance = window.gantt;
+            if (ref.current) {
+              instance.init(ref.current);
+            }
+          }
+        }
+      } else {
+        // Use global gantt as fallback
+        if (typeof gantt !== 'undefined' && gantt) {
+          instance = gantt;
+          if (ref.current) {
+            instance.init(ref.current);
+          }
+        } else if (window.gantt) {
+          instance = window.gantt;
+          if (ref.current) {
+            instance.init(ref.current);
+          }
+        }
+      }
+      if (instance) {
+        setGanttInstance(instance);
+      }
     }
   }, [ref]);
 

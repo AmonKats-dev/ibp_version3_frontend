@@ -22,13 +22,18 @@ let ganttProjectChartInstance = null;
 function initGanttProjectChart() {
   if (!ganttProjectChartInstance) {
     // Try global gantt first (standard version)
-    if (typeof gantt !== 'undefined') {
+    if (typeof gantt !== 'undefined' && gantt) {
       ganttProjectChartInstance = gantt;
     } else if (window.gantt) {
       ganttProjectChartInstance = window.gantt;
-    } else if (Gantt && typeof Gantt.getGanttInstance === 'function') {
+    } else if (typeof Gantt !== 'undefined' && Gantt && typeof Gantt.getGanttInstance === 'function') {
       // Fallback to getGanttInstance if available (Commercial version)
-      ganttProjectChartInstance = Gantt.getGanttInstance();
+      try {
+        ganttProjectChartInstance = Gantt.getGanttInstance();
+      } catch (e) {
+        console.warn('Failed to get Gantt instance:', e);
+        return null;
+      }
     } else {
       return null;
     }
