@@ -24,6 +24,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import CustomTreeView from "./CustomTreeView";
 import { useSelector } from "react-redux";
+import "chart.js";
 import { Pie } from "react-chartjs-2";
 
 import Card from "@material-ui/core/Card";
