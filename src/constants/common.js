@@ -1,10 +1,6 @@
-// export const API_URL = 'http://api-ibp.torusline.com'; //production
-// export const API_URL = 'http://api-ibp-dev.torusline.com'; //development
-// export const API_URL = 'http://api.ibp.dev'; //development
-// export const API_URL = 'http://ibp-main/api/web'; //local ibp
+// API_URL is sourced from config (which uses REACT_APP_API_URL / Railway backend)
+export { API_URL } from "./config";
 
-// export const API_URL =
-//     process.env.REACT_APP_API_URL || 'http://api-ibp-dev.torusline.com';
 import {
   faFilePdf,
   faFileWord,
